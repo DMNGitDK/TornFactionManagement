@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TornFactionManagement.MainPage"
+             BackgroundImageSource="tornbadge.png"
+             xmlns:vm="clr-namespace:TornFactionManagement.ViewModel"
+             x:DataType="vm:MainPageViewModel"
+             Title="Spawtans home">
+
+    <ScrollView Orientation="Both">
+
+        <FlexLayout Direction="Row" JustifyContent="SpaceBetween" Wrap="Wrap">
+
+            <!-- First ListView -->
+            <Frame Padding="5" BackgroundColor="AliceBlue" Margin="25,50,25,50" HeightRequest="500" WidthRequest="500">
+                <Button Text="Faction update list "
+                    Command="{Binding LoadFactionMembersCommand}"/>
+            </Frame>
+
+            <!-- Second ListView -->
+            <Frame Padding="5" BackgroundColor="AliceBlue" Margin="25,50,25,50" HeightRequest="700">
+                <ListView BackgroundColor="DarkRed" WidthRequest="300" HeightRequest="700" ItemsSource="{Binding }">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Name}" Detail="{Binding Position}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+
+            <!-- Third ListView -->
+            <Frame Padding="5" BackgroundColor="AliceBlue" Margin="25,50,25,50" HeightRequest="700">
+                <ListView BackgroundColor="LightGray" WidthRequest="500" HeightRequest="700" ItemsSource="{Binding }">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding }" Detail="{Binding }" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+
+        </FlexLayout>
+    </ScrollView>
+</ContentPage>

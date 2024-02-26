@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="TornFactionManagement.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TornFactionManagement"
+    Shell.FlyoutBehavior="Disabled"
+    Title="TornFactionManagement">
+
+
+    <Shell.TitleView>
+        <Grid>
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="DarkGreen" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Button
+                Text="☰"
+                FontSize="25"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                Clicked="OnFlyoutButtonClicked"
+                />
+
+            <Label 
+                   Text="Spawtan Dashboard" 
+                   HorizontalOptions="CenterAndExpand"
+                   FontSize="35"
+                   />
+        </Grid>
+    </Shell.TitleView>
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="50,*" Padding="10" RowDefinitions="50">
+                <Image Source="{Binding Icon}" Grid.Column="0"/>
+                <Label Text="{Binding Title}" FontFamily="OpenSans_Semibold"
+                      FontSize="Medium" Grid.Column="1" VerticalOptions="Center"/>
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="Black"
+                  HeightRequest="270">
+
+                <Image Aspect="Fill"
+                       Source="tornbadge.png"/>
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" 
+        Icon="home.png"/>
+
+
+    <FlyoutItem Title="Recruitment" Icon="circle.png">
+        <ShellContent ContentTemplate="{DataTemplate local:RecruitmentPage}" Route="RectuitmentPage"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Economy" Icon="circle.png">
+        <ShellContent ContentTemplate="{DataTemplate local:EconPage}" Route="EconPage"/>
+    </FlyoutItem>
+    <FlyoutItem Title="War" Icon="circle.png">
+        <ShellContent ContentTemplate="{DataTemplate local:WarPage}" Route="WarPage"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Planning" Icon="circle.png">
+        <ShellContent ContentTemplate="{DataTemplate local:PlanningPage}" Route="PlanningPage"/>
+    </FlyoutItem>
+
+
+
+
+</Shell>
