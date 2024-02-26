@@ -19,30 +19,8 @@ namespace TornFactionManagement.ViewModel
         public MainPageViewModel()
         {
             tornAPIServices = new TornAPIServices();
-            FactionMembers = new ObservableCollection<TornApiResponseMembers>();
-            LoadFactionMembersCommand = new Command(async () => await LoadFactionMembersAsync());
 
         }
-
-        [ObservableProperty]
-        private ObservableCollection<TornApiResponseMembers> factionMembers;
-
-        public Command LoadFactionMembersCommand { get; }
-
-        private async Task LoadFactionMembersAsync()
-        {
-            var response = await tornAPIServices.GetData("faction", "basic");
-            if (response != null && response.Members != null)
-            {
-                FactionMembers.Clear();
-                foreach (var member in response.Members)
-                {
-                    factionMembers.Add(member); 
-                    Debug.WriteLine(member.Name);
-                }
-            }
-        }
-
 
         [ObservableProperty]
         private string name;
@@ -52,6 +30,32 @@ namespace TornFactionManagement.ViewModel
 
         [ObservableProperty]
         private string onlineStatus;
+
+        [ObservableProperty]
+        private ObservableCollection<TornApiResponseMembers> factionMembers;
+
+        [RelayCommand]
+
+        private async Task LoadFactionMembers()
+
+        {
+            var response = await tornAPIServices.GetData("faction", "basic");
+            if (response != null && response.Members != null)
+            {
+                FactionMembers.Clear();
+                foreach (var member in response.Members)
+                {
+                    Name = member.Name;
+
+                    FactionMembers.Add(member);
+                    
+                    Debug.WriteLine(member.Name);
+                }
+            }
+        }
+
+
+
 
     }
 }

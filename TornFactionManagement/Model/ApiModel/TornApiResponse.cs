@@ -14,8 +14,6 @@ namespace TornFactionManagement.Model.ApiModel
 
     }
 
-
-
     public class TornApiResponseMembers
     {
         public string? Name { get; set; }
