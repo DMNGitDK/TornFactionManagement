@@ -1,30 +1,46 @@
-﻿using System.Diagnostics;
-using System.Net.Http.Json;
+﻿using Newtonsoft.Json;
+using System.Diagnostics;
+using System.Net.Http;
 using TornFactionManagement.Model.ApiModel;
 
 namespace TornFactionManagement.Services
 {
     internal class TornAPIServices
     {
-        private readonly HttpClient _httpClient;
+        private readonly HttpClient httpClient;
 
         public TornAPIServices() 
             {
-                _httpClient = new HttpClient();
-                _httpClient.BaseAddress = new Uri(APIConstants.API_BASE_URL);
+                httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri(APIConstants.API_BASE_URL);
 
             }
+
+
         public async Task<TornApiResponse?> GetData(string endpoint, string selection)
         {
-             if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
+            if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
             {
-                return null; 
+                return null;
             }
             else
             {
-                return await _httpClient.GetFromJsonAsync<TornApiResponse>($"{APIConstants.API_BASE_URL}{endpoint}/?selections={selection}&key={APIConstants.API_KEY}");
+                HttpResponseMessage response = await httpClient.GetAsync($"{APIConstants.API_BASE_URL}{endpoint}/?selections={selection}&key={APIConstants.API_KEY}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    
+                    string jsonResponse = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine(jsonResponse);
+               
+                    return null; 
+                }
+                else
+                {
+                    Debug.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+                    return null;
+                }
             }
- 
         }
     }
 }

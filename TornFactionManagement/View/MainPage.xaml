@@ -19,7 +19,7 @@
 
             <!-- Second ListView -->
             <Frame Padding="5" BackgroundColor="AliceBlue" Margin="25,50,25,50" HeightRequest="700">
-                <ListView BackgroundColor="DarkRed" WidthRequest="300" HeightRequest="700" ItemsSource="{Binding }">
+                <ListView BackgroundColor="DarkRed" WidthRequest="300" HeightRequest="700" ItemsSource="{Binding FactionMembers}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextCell Text="{Binding Name}" Detail="{Binding Position}" />

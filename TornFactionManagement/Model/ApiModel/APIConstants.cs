@@ -11,6 +11,5 @@ namespace TornFactionManagement.Model.ApiModel
     {
         public const string API_KEY = "fkm6Y8JandDkPJ1G";
         public const string API_BASE_URL = "https://api.torn.com/";
-
     }
 }

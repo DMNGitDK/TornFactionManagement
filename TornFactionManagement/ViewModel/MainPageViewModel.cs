@@ -19,7 +19,7 @@ namespace TornFactionManagement.ViewModel
         public MainPageViewModel()
         {
             tornAPIServices = new TornAPIServices();
-
+            
         }
 
         [ObservableProperty]
@@ -35,27 +35,15 @@ namespace TornFactionManagement.ViewModel
         private ObservableCollection<TornApiResponseMembers> factionMembers;
 
         [RelayCommand]
-
         private async Task LoadFactionMembers()
 
         {
+             
             var response = await tornAPIServices.GetData("faction", "basic");
-            if (response != null && response.Members != null)
+            if (response != null)
             {
-                FactionMembers.Clear();
-                foreach (var member in response.Members)
-                {
-                    Name = member.Name;
-
-                    FactionMembers.Add(member);
-                    
-                    Debug.WriteLine(member.Name);
-                }
+                Debug.WriteLine(response);
             }
         }
-
-
-
-
     }
 }

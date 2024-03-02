@@ -1,20 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace TornFactionManagement.Model.ApiModel
+namespace TornFactionManagement.Model
 {
-    internal class TornApiResponse 
-    {
-        [JsonPropertyName("members")]
-        public List<TornApiResponseMembers>? Members { get; set; }
-    }
-
-    public class TornApiResponseMembers
+    public class Members
     {
         public string? Name { get; set; }
         public int Level { get; set; }
@@ -39,5 +31,4 @@ namespace TornFactionManagement.Model.ApiModel
         public string? Color { get; set; }
         public int Until { get; set; }
     }
-
 }

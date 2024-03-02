@@ -8,7 +8,7 @@ namespace TornFactionManagement
         public MainPage()
         {
             InitializeComponent();
-
+            BindingContext = new MainPageViewModel();
         }
 
 
